@@ -25,6 +25,7 @@
 		<?php wp_body_open(); ?>
 		<header>
 			<div class="head">
+
 				<div class="head-top">
 					<div class="head-subtitle">
 						青森県・津軽エリアの福祉トータルサポート
@@ -35,6 +36,7 @@
 						<a href="tel:0172338861"><i class="fas fa-phone"></i>0172-33-8861</a>
 					</div>
 				</div>
+
 				<div class="head-main">
 					<a href="<?php echo site_url(); ?>" class="head-logo">
 						<picture class="swiper-slide">
@@ -78,8 +80,7 @@
 				<?php } ?>
 				
 				
-				<div id="sprecruit"><a href="<?php echo site_url('/recruit'); ?>">採用情報</a>
-				</div>
+				<div id="sprecruit"><a href="<?php echo site_url('/recruit'); ?>">採用情報</a></div>
 				<div id="sptel"><a href="tel:0172338861"><i class="fas fa-phone-alt"></i>お電話</a></div>
 				<div id="spnav">
 					<a href="#modal_menu"><i class="fas fa-bars"></i>メニュー</a>
@@ -179,9 +180,7 @@
 			yoast_breadcrumb('<div id="breadcrumbs" class="inner">', '</div>');
 		}
 		?>
-		<main>		
+		<main>	
 		<?php if (!is_home() && !is_page()) {?>
-		<div class="inner">
-			<h1><?php is_archive() ? the_archive_title() : the_title(); ?></h1>
-		</div>
+		<div class="inner"><h1><?php is_archive() ? the_archive_title() : the_title(); ?></h1></div>
 		<?php }?>
