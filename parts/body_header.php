@@ -1,10 +1,7 @@
 <header>
-			<div class="head">
-
-				<div class="head-top">
-					<div class="head-subtitle">
-						青森県・津軽エリアの福祉トータルサポート
-					</div>
+<div class="head">
+<div class="head-top">
+					<div class="head-subtitle">青森県・津軽エリアの福祉トータルサポート</div>
 					<div class="head-contact">
 						<a href="<?php echo get_category_link(get_category_by_slug('news')); ?>" class="arrow">新着情報</a>
 						<a href="<?php echo site_url('/contact'); ?>" class="arrow">お問い合わせ</a>
@@ -44,11 +41,9 @@
 						<ul>
 							<?php wp_list_pages(['title_li' => null, 'include' => $recruit_page->ID]); ?>
 							<?php wp_list_pages(['title_li' => null, 'child_of' => $recruit_page->ID, 'sort_column' => 'menu_order', 'exclude' => get_page_by_path('recruit/entry')->ID]); ?>
-							<li<?php echo is_category('recruit-news') ? ' class="current_page_item"' : ''; ?>><a
-																												 href="<?php echo get_category_link(get_category_by_slug('recruit-news')); ?>">インフォメーション</a>
+							<li<?php echo is_category('recruit-news') ? ' class="current_page_item"' : ''; ?>><a href="<?php echo get_category_link(get_category_by_slug('recruit-news')); ?>">インフォメーション</a>
 							</li>
 							<?php wp_list_pages(['title_li' => null, 'include' => get_page_by_path('recruit/entry')->ID]); ?>
-
 						</ul>
 					</nav>
 				</div>

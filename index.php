@@ -3,7 +3,6 @@
 <?php get_header(); ?>
 <body <?php body_class(); ?>>
 		<?php wp_body_open(); ?>
-		
 		<!--header-->
 		<?php get_template_part('parts/body_header'); ?>
 		<main>
@@ -13,40 +12,9 @@
 		<h2>七峰会の強み</h2>
 		<p>あああああああああああああああああああああああああああああああああああああああああああああ</p>
 
-		<div class="flex3">
-			<div>
-				<h3><span>01</span>
-					幅広いネットワーク</h3>
-				<!--<div class="circle-bg yellow">--><div>
-					<img src="<?php echo get_template_directory_uri(); ?>/img/top_strength01.jpg" alt="七峰会 幅広いネットワーク" class="round">
-				</div>
-				<p>
-					七峰会は、地域に密着した福祉事業のトータルサポートを目指し、弘前市を中心に平川市・黒石市に施設を有し、それぞれが連携したサポートを展開しています。
-				</p>
-			</div>
-			<div>
-				<h3><span>02</span>
-					手厚いサポート</h3>
-				<!--<div class="circle-bg green">--><div>
-					<img src="<?php echo get_template_directory_uri(); ?>/img/strength02.jpg" alt="七峰会 手厚いサポート" class="round">
-				</div>
-				<p>
-					人は皆、それぞれに個性があります。七峰会は、一人ひとりのニーズに合わせたサービスの提供に努め、一人ひとりの成長と人生をサポートします。
-				</p>
-			</div>
-			<div>
-				<h3><span>03</span>
-					安心・信頼感</h3>
-				<!--<div class="circle-bg lightblue">--><div>
-					<img src="<?php echo get_template_directory_uri(); ?>/img/strength03.jpg" alt="七峰会 安心・信頼感" class="round">
-				</div>
-				<p>
-					昭和48年の法人設立以来、一人ひとりを大切にして積み重ねた信頼と実績は利用者本人だけでなく、ご家族への安心と信頼につながっています。
-				</p>
-			</div>
-		</div>
 
-		
+
+
 		<div class="btn full"><a href="<?php echo esc_url(site_url('/strength')); ?>">七峰会の強み</a>
 		</div>
 	</div>
