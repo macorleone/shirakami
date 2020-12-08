@@ -1,6 +1,9 @@
 <?php global $post; ?>
 <?php $post_slug = $post->post_name; ?>
 <?php remove_filter('the_content', 'wpautop'); ?>
+
+
+
 <?php get_header(); ?>
 <?php get_template_part('parts/recruit'); ?>
 <section id="workplace">
