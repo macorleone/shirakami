@@ -66,3 +66,9 @@
 			<h1 class="eyecatch bg_image" <?php if (has_post_thumbnail() && !is_page('recruit')) {?>style="background-image:url(<?php echo get_the_post_thumbnail_url(); ?>)" <?php } ?>><?php the_title(); ?></h1>
 			<?php } ?>
 		</header>
+
+		<?php
+		if (function_exists('yoast_breadcrumb') && !(is_home() || is_page('recruit'))) {
+			yoast_breadcrumb('<div id="breadcrumbs" class="inner">', '</div>');
+		}
+		?>

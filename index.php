@@ -1,9 +1,18 @@
+<!DOCTYPE html>
+<html <?php language_attributes(); ?>>
 <?php get_header(); ?>
+<body <?php body_class(); ?>>
+		<?php wp_body_open(); ?>
+		
+		<!--header-->
+		<?php get_template_part('parts/body_header'); ?>
+		<main>
 
 <section id="strength" class="bg_image">
 	<div class="inner">
 		<h2>七峰会の強み</h2>
 		<p>あああああああああああああああああああああああああああああああああああああああああああああ</p>
+
 		<div class="flex3">
 			<div>
 				<h3><span>01</span>
@@ -36,6 +45,8 @@
 				</p>
 			</div>
 		</div>
+
+		
 		<div class="btn full"><a href="<?php echo esc_url(site_url('/strength')); ?>">七峰会の強み</a>
 		</div>
 	</div>
@@ -208,4 +219,7 @@
 	求人情報
 </h2>
 <?php get_template_part('parts/recruit'); ?>
-<?php get_footer();
+</main>
+<?php get_footer(); ?>
+</body>
+</html>

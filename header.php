@@ -1,6 +1,3 @@
-<!DOCTYPE html>
-<html <?php language_attributes(); ?>>
-
 	<head>
 		<meta charset="<?php bloginfo('charset'); ?>">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -20,19 +17,3 @@
 		<link rel="stylesheet" href="<?php echo esc_url(get_template_directory_uri()); ?>/css/remodal.css">
 		<link rel="stylesheet" href="<?php echo esc_url(get_template_directory_uri()); ?>/css/page.css?<?php echo filemtime(get_template_directory('/css/page.css')); ?>">
 	</head>
-
-	<body <?php body_class(); ?>>
-		<?php wp_body_open(); ?>
-		
-		<!--header-->
-		<?php get_template_part('parts/body_header'); ?>
-
-		<?php
-		if (function_exists('yoast_breadcrumb') && !(is_home() || is_page('recruit'))) {
-			yoast_breadcrumb('<div id="breadcrumbs" class="inner">', '</div>');
-		}
-		?>
-		<main>	
-		<?php if (!is_home() && !is_page()) {?>
-		<div class="inner"><h1><?php is_archive() ? the_archive_title() : the_title(); ?></h1></div>
-		<?php }?>

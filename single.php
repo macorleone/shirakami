@@ -1,4 +1,19 @@
+<!DOCTYPE html>
+<html <?php language_attributes(); ?>>
+
 <?php get_header(); ?>
+
+<body <?php body_class(); ?>>
+		<?php wp_body_open(); ?>
+		
+		<!--header-->
+		<?php get_template_part('parts/body_header'); ?>
+		<main>
+
+<?php if (!is_home() && !is_page()) {?>
+		<div class="inner"><h1><?php is_archive() ? the_archive_title() : the_title(); ?></h1></div>
+		<?php }?>
+
 <section>
   <div class="inner">
     <?php while (have_posts()) { ?>
@@ -16,5 +31,7 @@
     <?php } ?>
   </div>
 </section>
-
-<?php get_footer();
+</main>
+<?php get_footer(); ?>
+</body>
+</html>

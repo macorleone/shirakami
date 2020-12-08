@@ -1,11 +1,31 @@
 <?php global $post; ?>
 <?php $post_slug = $post->post_name; ?>
 <?php remove_filter('the_content', 'wpautop'); ?>
-
-
-
+<!DOCTYPE html>
+<html <?php language_attributes(); ?>>
 <?php get_header(); ?>
-<?php get_template_part('parts/recruit'); ?>
+
+<body <?php body_class(); ?>>
+		<?php wp_body_open(); ?>
+		
+		<!--header-->
+		<?php get_template_part('parts/body_header'); ?>
+		<main>
+
+		<div id="recruit-catch" class="bg_blue">
+	<div class="inner">
+
+		<div class="narrow">
+			<h2>七峰会でみつける、あたらしい自分。</h2>
+			<p <?php echo is_home() ? 'class="mb"': '' ?>>
+				「誰かの役に立ちたい」「人に喜ばれる仕事がしたい」「自分の力を社会や地域のために活かしたい」。七峰会は、あなたの「やりたい」気持ちをお待ちしております。今はまだ何が向いているか分からなくていい。何ができるか分からなくていい。子供から大人まで多くのサービスを提供している環境だからこそ、あなたの「やりたい」が経験となり、成長へとつながり、新しい自分をみつけるきっかけになります。
+			</p>
+		</div>
+		<?php echo is_home() ? '<div class="btn white"><a href="/recruit/">求人情報</a></div>': '' ?>
+	</div>
+</div>
+
+
 <section id="workplace">
 	<div class="inner">
 		<h2>七峰会で叶う<strong>3</strong>つの"K"
@@ -46,7 +66,7 @@
 		</div>
 	</div>
 </section>
-<?php get_template_part('parts/section', 'voices'); ?>
+<!--<?php get_template_part('parts/section', 'voices'); ?>-->
 <section>
 	<div class="inner">
 		<h2>募集要項<span>occupation</span></h2>
@@ -81,4 +101,7 @@
 		</div>
 	</div>
 </section>
-<?php get_footer();
+</main>
+<?php get_footer(); ?>
+</body>
+</html>

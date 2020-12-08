@@ -1,4 +1,15 @@
+<!DOCTYPE html>
+<html <?php language_attributes(); ?>>
+
 <?php get_header(); ?>
+<body <?php body_class(); ?>>
+		<?php wp_body_open(); ?>
+		
+		<!--header-->
+		<?php get_template_part('parts/body_header'); ?>
+		<main>
+
+
 <?php remove_filter('the_content', 'wpautop'); ?>
 
 <?php if (is_page('voices')) { ?>
@@ -145,4 +156,7 @@
 	</div>
 </aside>
 <?php } ?>
-<?php get_footer();
+</main>
+<?php get_footer(); ?>
+</body>
+</html>

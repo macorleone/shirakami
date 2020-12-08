@@ -1,4 +1,14 @@
+<!DOCTYPE html>
+<html <?php language_attributes(); ?>>
 <?php get_header(); ?>
+
+<body <?php body_class(); ?>>
+		<?php wp_body_open(); ?>
+		
+		<!--header-->
+		<?php get_template_part('parts/body_header'); ?>
+		<main>
+
 <?php if (have_posts()) { ?>
 <section>
   <div class="inner">
@@ -42,4 +52,7 @@
     </div>
   </div>
 </section>
-<?php get_footer();
+</main>
+<?php get_footer(); ?>
+</body>
+</html>

@@ -1,27 +1,8 @@
-</main>
+
 <footer>
-<!--
-  <?php $recruit_page = get_page_by_path('recruit'); ?>
-  <?php if (!in_array($recruit_page->ID, [wp_get_post_parent_id(0), get_the_ID()])) { ?>
-  <div class="foot-banner">
-    <div class="flex2">
-      <div><a href="<?php echo esc_url(site_url('/pamphlets')); ?>"><i class="fas fa-copy"></i>広報誌・パンフレット</a></div>
-      <div><a href="<?php echo esc_url(site_url('/links')); ?>"><i class="fas fa-link"></i>関連リンク</a></div>
-    </div>
-  </div>
-  <?php } ?>
--->	
+
   <div class="foot">
 	  
-<!--	  
-    <?php if (!in_array($recruit_page->ID, [wp_get_post_parent_id(0), get_the_ID()])) { ?>
-    <div class="foot-contact">
-      <p>七峰会グループへのお問い合わせ</p>
-      <div class="btn white"><a href="<?php echo esc_url(site_url('/contact')); ?>">お問い合わせ</a>
-      </div>
-    </div>
-    <?php } ?>
--->
     <div class="foot-information">
       <a href="<?php esc_url(site_url('/')); ?>" class="logo">
         <img src="<?php echo get_template_directory_uri(); ?>/img/logo-footer.png" alt="社会福祉法人 七峰会">
@@ -169,7 +150,7 @@
 <script src="<?php echo esc_url(get_template_directory_uri()); ?>/js/remodal.js">
 </script>
 <?php if (is_home()) { ?>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/5.4.5/js/swiper.min.js" integrity="sha512-VHsNaV1C4XbgKSc2O0rZDmkUOhMKPg/rIi8abX9qTaVDzVJnrDGHFnLnCnuPmZ3cNi1nQJm+fzJtBbZU9yRCww==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/5.4.5/js/swiper.min.js" integrity="sha512-VHsNaV1C4XbgKSc2O0rZDmkUOhMKPg/rIi8abX9qTaVDzVJnrDGHFnLnCnuPmZ3cNi1nQJm+fzJtBbZU9yRCww==" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/5.4.5/js/swiper.min.js" crossorigin="anonymous"></script>
 <script>window.Swiper || document.write('<script src="<?php echo esc_url(get_template_directory_uri()); ?>/js/swiper.min.js"><\/script>')</script>
 <?php } ?>
 <script src="<?php echo esc_url(get_template_directory_uri()); ?>/js/basic.js">
@@ -187,8 +168,3 @@ $(function() {
   });
 });
 </script>
-
-
-</body>
-
-</html>
