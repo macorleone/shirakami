@@ -97,44 +97,6 @@
 				</p>
 			</div>
 		</div>
-<!--
-		<?php require_once 'facility-data.php'; ?>
-		<div class="flex4">
-			<?php if ($facility_data) { ?>
-			<?php foreach ($facility_data as $facilitySlug => $facility) { ?>
-			<div class="facility">
-				<a href="<?php echo get_the_permalink(get_page_by_path('facilities')).'#'.$facilitySlug; ?>">
-					<img src="<?php echo $facility['image']; ?>" alt="<?php echo $facility['name']; ?>" class="round">
-				</a>
-
-
-				<div class="tags">
-					<a href="<?php echo get_the_permalink(get_page_by_path(explode('_', $facility['category'])[0])); ?>"
-					   class="tag-<?php echo $facility['category']; ?>"><?php echo $facility_categories[$facility['category']]; ?></a>
-				</div>
-				<h4>
-					<a href="<?php echo get_the_permalink(get_page_by_path('facilities')).'#'.$facilitySlug; ?>"
-					   class="arrow-full before-<?php echo $facilitySlug; ?>">
-						<?php echo $facility['name']; ?>
-					</a>
-				</h4>
-				<p class="address"><?php echo $facility['area']; ?>
-				</p>
-				<hr>
-				<ul>
-					<?php foreach ($facility['tags'] as $tag) {?>
-					<li>
-						<?php echo $tag; ?>
-					</li>
-					<?php } ?>
-				</ul>
-			</div>
-			<?php } ?>
-		</div>
-		<?php } ?>
-		<div class="btn full"><a href="<?php echo esc_url(site_url('/facilities')); ?>">施設一覧</a>
-		</div>
--->
 	</div>
 </section>
 

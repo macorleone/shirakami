@@ -32,18 +32,6 @@
           <a href="<?php echo esc_url(site_url('/corporate')); ?>">
             <?php echo get_the_title(get_page_by_path('corporate')); ?>
           </a>
-          <ul>
-            <li>
-              <a href="<?php echo esc_url(site_url('/corporate/greeting')); ?>">
-                <?php echo get_the_title(get_page_by_path('corporate/greeting')); ?>
-              </a>
-            </li>
-            <li>
-              <a href="<?php echo esc_url(site_url('/corporate/information')); ?>">
-                <?php echo get_the_title(get_page_by_path('corporate/information')); ?>
-              </a>
-            </li>
-          </ul>
         </li>
       </ul>
       <ul>
@@ -75,11 +63,6 @@
           </a>
         </li>
         <li>
-          <a href="<?php echo esc_url(site_url('/pamphlets')); ?>">
-            <?php echo get_the_title(get_page_by_path('pamphlets')); ?>
-          </a>
-        </li>
-        <li>
           <a href="<?php echo esc_url(site_url('/links')); ?>">
             <?php echo get_the_title(get_page_by_path('links')); ?>
           </a>
@@ -95,42 +78,6 @@
           <a href="<?php echo esc_url(site_url('/recruit')); ?>">
             <?php echo get_the_title(get_page_by_path('recruit')); ?>
           </a>
-          <div class="flex2">
-            <ul>
-              <li>
-                <a href="<?php echo esc_url(site_url('/recruit/workplace')); ?>">
-                  <?php echo get_the_title(get_page_by_path('recruit/workplace')); ?>
-                </a>
-              </li>
-              <li>
-                <a href="<?php echo esc_url(site_url('/recruit/voices')); ?>">
-                  <?php echo get_the_title(get_page_by_path('recruit/voices')); ?>
-                </a>
-              </li>
-              <li>
-                <a href="<?php echo esc_url(site_url('/recruit/entry')); ?>">
-                  <?php echo get_the_title(get_page_by_path('recruit/entry')); ?>
-                </a>
-              </li>
-            </ul>
-            <ul>
-              <li>
-                <a href="<?php echo esc_url(site_url('/recruit/graduates')); ?>">
-                  <?php echo get_the_title(get_page_by_path('recruit/graduates')); ?>
-                </a>
-              </li>
-              <li>
-                <a href="<?php echo esc_url(site_url('/recruit/mid-career')); ?>">
-                  <?php echo get_the_title(get_page_by_path('recruit/mid-career')); ?>
-                </a>
-              </li>
-              <li>
-                <a href="<?php echo get_category_link(get_category_by_slug('recruit-news')); ?>">
-                  新着情報
-                </a>
-              </li>
-            </ul>
-          </div>
         </li>
       </ul>
     </nav>
@@ -146,11 +93,11 @@
 <script src="<?php echo esc_url(get_template_directory_uri()); ?>/js/jquery-3.4.0.min.js">
 </script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <script src="<?php echo esc_url(get_template_directory_uri()); ?>/js/remodal.js">
 </script>
 <?php if (is_home()) { ?>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/5.4.5/js/swiper.min.js" crossorigin="anonymous"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/Swiper/5.4.5/js/swiper.min.js" crossorigin="anonymous"></script>
 <script>window.Swiper || document.write('<script src="<?php echo esc_url(get_template_directory_uri()); ?>/js/swiper.min.js"><\/script>')</script>
 <?php } ?>
 <script src="<?php echo esc_url(get_template_directory_uri()); ?>/js/basic.js">

@@ -15,5 +15,5 @@
 		<?php } ?>
 		
 		<link rel="stylesheet" href="<?php echo esc_url(get_template_directory_uri()); ?>/css/remodal.css">
-		<link rel="stylesheet" href="<?php echo esc_url(get_template_directory_uri()); ?>/css/page.css?<?php echo filemtime(get_template_directory('/css/page.css')); ?>">
+		<link rel="stylesheet" href="<?php echo esc_url(get_template_directory_uri()); ?>/css/page.css">
 	</head>
