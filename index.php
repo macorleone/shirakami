@@ -3,8 +3,7 @@
 <?php get_header(); ?>
 <body <?php body_class(); ?>>
 		<?php wp_body_open(); ?>
-		<!--header-->
-		<?php get_template_part('parts/body_header'); ?>
+		<!--header--><?php get_template_part('parts/body_header'); ?>
 		<main>
 
 <section id="strength" class="bg_image">
