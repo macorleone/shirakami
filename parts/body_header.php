@@ -40,7 +40,7 @@
 					</ul>
 				</nav>
 			</div>
-		<?php } ?>
+			<?php } ?>
 		<?php get_template_part('parts/sp_navi'); ?>
 	</div>
 	<?php if (is_home()) { ?>
