@@ -2,14 +2,14 @@
 
 function shichihoukai_setup()
 {
-	add_theme_support('title-tag');
-	add_theme_support('post-thumbnails');
+    add_theme_support('title-tag');
+    add_theme_support('post-thumbnails');
 }
 add_action('after_setup_theme', 'shichihoukai_setup');
 
 function shichihoukai_scripts()
 {
-	wp_enqueue_style('shichihoukai-style', get_stylesheet_uri());
+    wp_enqueue_style('shichihoukai-style', get_stylesheet_uri());
 }
 add_action('wp_enqueue_scripts', 'shichihoukai_scripts');
 
@@ -39,36 +39,36 @@ remove_action('wp_head', 'wp_oembed_add_host_js');
 remove_action('wp_head', 'feed_links', 2);
 remove_action('wp_head', 'feed_links_extra', 3);
 add_action('wp_head', function () {
-	printf('<link rel="alternate" type="application/rss+xml" title="%s" href="%s">%s', get_bloginfo('name'), get_bloginfo('rss2_url'), "\n");
+    printf('<link rel="alternate" type="application/rss+xml" title="%s" href="%s">%s', get_bloginfo('name'), get_bloginfo('rss2_url'), "\n");
 });
 
 //レンダリングブロックしているJavascriptの読み込みを遅らせる
 function move_scripts_head_to_footer_ex()
 {
-	//ヘッダーのスクリプトを取り除く
-	remove_action('wp_head', 'wp_print_scripts');
-	remove_action('wp_head', 'wp_print_head_scripts', 9);
-	remove_action('wp_head', 'wp_enqueue_scripts', 1);
-	//フッターにスクリプトを移動する
-	add_action('wp_footer', 'wp_print_scripts', 5);
-	add_action('wp_footer', 'wp_print_head_scripts', 5);
-	add_action('wp_footer', 'wp_enqueue_scripts', 5);
+    //ヘッダーのスクリプトを取り除く
+    remove_action('wp_head', 'wp_print_scripts');
+    remove_action('wp_head', 'wp_print_head_scripts', 9);
+    remove_action('wp_head', 'wp_enqueue_scripts', 1);
+    //フッターにスクリプトを移動する
+    add_action('wp_footer', 'wp_print_scripts', 5);
+    add_action('wp_footer', 'wp_print_head_scripts', 5);
+    add_action('wp_footer', 'wp_enqueue_scripts', 5);
 }
 add_action('wp_enqueue_scripts', 'move_scripts_head_to_footer_ex');
 
 //プラグインcss削除
 function dequeue_plugins_style()
 {
-	//Gutenberg用css削除
-	wp_dequeue_style('wp-block-library');
-	wp_dequeue_style('wp-block-library-theme');
+    //Gutenberg用css削除
+    wp_dequeue_style('wp-block-library');
+    wp_dequeue_style('wp-block-library-theme');
 }
 add_action('wp_enqueue_scripts', 'dequeue_plugins_style', 9999);
 
 function remove_recent_comments_style()
 {
-	global $wp_widget_factory;
-	remove_action('wp_head', [$wp_widget_factory->widgets['WP_Widget_Recent_Comments'], 'recent_comments_style']);
+    global $wp_widget_factory;
+    remove_action('wp_head', [$wp_widget_factory->widgets['WP_Widget_Recent_Comments'], 'recent_comments_style']);
 }
 add_action('widgets_init', 'remove_recent_comments_style');
 
@@ -76,10 +76,10 @@ add_action('widgets_init', 'remove_recent_comments_style');
 add_action('wp_enqueue_scripts', 'deregister_cf7_files');
 function deregister_cf7_files()
 {
-	if (!is_page(array('contact', 'entry'))) {
-		wp_dequeue_style('contact-form-7');
-		wp_dequeue_script('contact-form-7');
-	}
+    if (!is_page(array('contact', 'entry'))) {
+        wp_dequeue_style('contact-form-7');
+        wp_dequeue_script('contact-form-7');
+    }
 }
 
 /**
@@ -89,15 +89,15 @@ function deregister_cf7_files()
  */
 function pagename_class($classes = '')
 {
-	if (is_page()) {
-		$page = get_post(get_the_ID());
-		$classes[] = $page->post_name;
-		if ($page->post_parent) {
-			$classes[] = get_page_uri($page->post_parent).'-child';
-		}
-	}
+    if (is_page()) {
+        $page = get_post(get_the_ID());
+        $classes[] = $page->post_name;
+        if ($page->post_parent) {
+            $classes[] = get_page_uri($page->post_parent) . '-child';
+        }
+    }
 
-	return $classes;
+    return $classes;
 }
 add_filter('body_class', 'pagename_class');
 
@@ -108,14 +108,14 @@ add_filter('body_class', 'pagename_class');
  */
 function add_category_slug_classes_to_body_classes($classes)
 {
-	global $post;
-	if (is_single()) {
-		foreach ((get_the_category($post->ID)) as $category) {
-			$classes[] = $category->category_nicename;
-		}
-	}
+    global $post;
+    if (is_single()) {
+        foreach ((get_the_category($post->ID)) as $category) {
+            $classes[] = $category->category_nicename;
+        }
+    }
 
-	return $classes;
+    return $classes;
 }
 add_filter('body_class', 'add_category_slug_classes_to_body_classes');
 
@@ -127,108 +127,109 @@ add_filter('body_class', 'add_category_slug_classes_to_body_classes');
 //画像URLからIDを取得
 function get_attachment_id_by_url($url)
 {
-	global $wpdb;
-	$sql = "SELECT ID FROM {$wpdb->posts} WHERE post_name = %s";
-	preg_match('/([^\/]+?)(-e\d+)?(-\d+x\d+)?(\.\w+)?$/', $url, $matches);
-	$post_name = $matches[1];
+    global $wpdb;
+    $sql = "SELECT ID FROM {$wpdb->posts} WHERE post_name = %s";
+    preg_match('/([^\/]+?)(-e\d+)?(-\d+x\d+)?(\.\w+)?$/', $url, $matches);
+    $post_name = $matches[1];
 
-	return (int) $wpdb->get_var($wpdb->prepare($sql, $post_name));
+    return (int) $wpdb->get_var($wpdb->prepare($sql, $post_name));
 }
 //画像をサムネイルで出力
 function catch_that_image()
 {
-	global $post;
-	$first_img = '';
-	$output = preg_match_all("/<img\s[^>]*?src\s*=\s*['\"]([^'\"]*?)['\"][^>]*?>/i", $post->post_content, $matches);
-	if (isset($matches[1][0])) {
-		$first_img_src = $matches[1][0];
-		$attachment_id = get_attachment_id_by_url($first_img_src);
-		if(0 != $attachment_id){
-			$first_img = wp_get_attachment_image($attachment_id, 'thumbnail', false, array('class' => 'archive-thumbnail'));
-		} else {
-			$first_img = '<img src="'.$first_img_src. '">';
-		}
+    global $post;
+    $first_img = '';
+    $output = preg_match_all("/<img\s[^>]*?src\s*=\s*['\"]([^'\"]*?)['\"][^>]*?>/i", $post->post_content, $matches);
+    if (isset($matches[1][0])) {
+        $first_img_src = $matches[1][0];
+        $attachment_id = get_attachment_id_by_url($first_img_src);
+        if (0 != $attachment_id) {
+            $first_img = wp_get_attachment_image($attachment_id, 'thumbnail', false, array('class' => 'archive-thumbnail'));
+        } else {
+            $first_img = '<img src="' . $first_img_src . '">';
+        }
 
-		if (empty($first_img)) {
-			if($first_img_src){
-				$first_img = '<img src="'.$first_img_src. '">';
-			} else{
-				$first_img = '<img class="attachment_post_thumbnail" src="' . get_template_directory_uri() . '/img/noimg.jpg" alt="" />';
-			}
-		}
-		return $first_img;
-	} else {
-		return '<img class="attachment_post_thumbnail" src="' . get_template_directory_uri() . '/img/noimg.jpg" alt="" />';
-	}
+        if (empty($first_img)) {
+            if ($first_img_src) {
+                $first_img = '<img src="' . $first_img_src . '">';
+            } else {
+                $first_img = '<img class="attachment_post_thumbnail" src="' . get_template_directory_uri() . '/img/noimg.jpg" alt="" />';
+            }
+        }
+        return $first_img;
+    } else {
+        return '<img class="attachment_post_thumbnail" src="' . get_template_directory_uri() . '/img/noimg.jpg" alt="" />';
+    }
 }
 
 // archive タイトル調整 :カテゴリー :タグ 削除
 add_filter('get_the_archive_title', function ($title) {
-	if (is_category()) {
-		$title = single_cat_title('', false);
-	} elseif (is_tag()) {
-		$title = single_tag_title('', false);
-	}
+    if (is_category()) {
+        $title = single_cat_title('', false);
+    } elseif (is_tag()) {
+        $title = single_tag_title('', false);
+    }
 
-	return $title;
+    return $title;
 });
 
 /**
  * login画面.
  */
-function custom_login_logo() { ?>
-<style>
-	.login-action-login {
-		background-color: #fff;
-	}
+function custom_login_logo()
+{ ?>
+    <style>
+        .login-action-login {
+            background-color: #fff;
+        }
 
-	.login-action-login #login h1 a {
-		width: 260px;
-		height: 100px;
-		margin-bottom: 0;
-		background: url('<?php echo esc_url(get_template_directory_uri()); ?>/img/logo.png') no-repeat 0 0;
-		background-size: 260px;
-	}
+        .login-action-login #login h1 a {
+            width: 260px;
+            height: 100px;
+            margin-bottom: 0;
+            background: url('<?php echo esc_url(get_template_directory_uri()); ?>/img/logo.png') no-repeat 0 0;
+            background-size: 260px;
+        }
 
-	.login-action-login #login h1 a:hover {
-		opacity: 0.7;
-	}
-</style>
+        .login-action-login #login h1 a:hover {
+            opacity: 0.7;
+        }
+    </style>
 <?php }
 add_action('login_enqueue_scripts', 'custom_login_logo');
 
 function custom_login_logo_url()
 {
-	return get_bloginfo('url');
+    return get_bloginfo('url');
 }
 add_filter('login_headerurl', 'custom_login_logo_url');
 
 function my_remove_admin_menus()
 {
-	remove_menu_page('edit-comments.php');
+    remove_menu_page('edit-comments.php');
 }
 add_action('admin_menu', 'my_remove_admin_menus');
 
 function remove_comment_support()
 {
-	remove_post_type_support('post', 'comments');
-	remove_post_type_support('page', 'comments');
+    remove_post_type_support('post', 'comments');
+    remove_post_type_support('page', 'comments');
 }
 add_action('init', 'remove_comment_support', 100);
 
 function mytheme_admin_bar_render()
 {
-	global $wp_admin_bar;
-	$wp_admin_bar->remove_menu('comments');
+    global $wp_admin_bar;
+    $wp_admin_bar->remove_menu('comments');
 }
 add_action('wp_before_admin_bar_render', 'mytheme_admin_bar_render');
 
-require __DIR__.'/facility-data.php';
+require __DIR__ . '/facility-data.php';
 
 function organization_svg($atts)
 {
-	require __DIR__.'/facility-data.php';
-	return '<svg style="max-height:60vw; height: 50rem; width: 100%"  xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1076.43 917.2">
+    require __DIR__ . '/facility-data.php';
+    return '<svg style="max-height:60vw; height: 50rem; width: 100%"  xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1076.43 917.2">
     <defs>
         <style>
             .cls-1{fill:none;stroke:#ccc;stroke-miterlimit:10;stroke-width:2.17px}.cls-31{fill:#4f4f4f}.cls-25,.cls-27{fill:#fff}.cls-10,.cls-11{letter-spacing:.02em}.cls-12{fill:#dbdcdc}.cls-17{letter-spacing:.01em}.cls-19{letter-spacing:.03em}.cls-26{fill:#db5f42}.cls-27{font-size:19.5px;font-family:NotoSansCJKjp-Black-90ms-RKSJ-H,Noto Sans CJK JP;letter-spacing:.03em}.cls-31,.cls-34{font-size:16.25px;font-family:NotoSansCJKjp-Medium-90ms-RKSJ-H,Noto Sans CJK JP}.cls-31{letter-spacing:-.02em}.cls-32{fill:#f0a6ad}.cls-33{fill:#b388c9}.cls-34{fill:#484545}.cls-36{fill:#a0c8d5}.cls-37{fill:#e4c100}.cls-38{fill:#5f96cf}.cls-39{fill:#e09646}
@@ -264,7 +265,7 @@ function organization_svg($atts)
         <text transform="translate(305.85 472.31)" style="letter-spacing:.05em;font-size:21.67px;font-family:NotoSansCJKjp-Bold-90ms-RKSJ-H,Noto Sans CJK JP;fill:#4f4f4f">
             法人本部事務局
         </text>
-<a target="_blank" href="'.$facility_data['sunapple']['homepage'].'">
+<a target="_blank" href="' . $facility_data['sunapple']['homepage'] . '">
         <rect class="cls-25" x="583.43" y="537.97" width="491.38" height="107.81"/>
         <path class="cls-26" d="M1073.18,539.59V644.15H585.06V539.59h488.12m3.25-3.25H581.81V647.4h494.62V536.34Z" transform="translate(0 0)"/>
         <rect class="cls-26" x="583.43" y="536.88" width="492.46" height="35.76"/>
@@ -281,13 +282,13 @@ function organization_svg($atts)
             デイサービスセンターわかば など
         </text>
         </a>
-<a target="_blank" href="'.$facility_data['takushinkan']['homepage'].'">
+<a target="_blank" href="' . $facility_data['takushinkan']['homepage'] . '">
         <rect class="cls-25" x="583.43" y="135.98" width="491.38" height="107.81"/>
         <path class="cls-32" d="M1073.18,137.61V242.17H585.06V137.61h488.12m3.25-3.25H581.81V245.42h494.62V134.36Z" transform="translate(0 0)"/>
         <rect class="cls-32" x="583.43" y="134.63" width="492.46" height="35.76"/>
         <path class="cls-32" d="M1075.35,135.17v34.67H584V135.17h491.38m1.08-1.08H582.89v36.84h493.54V134.09Z" transform="translate(0 0)"/>
         <text class="cls-27" transform="translate(603.43 159.85)">
-            '.$facility_data['takushinkan']['name'].'
+            ' . $facility_data['takushinkan']['name'] . '
         </text>
         <text class="cls-31" transform="translate(603.7 197.77)">
             津軽生活支援センター
@@ -299,13 +300,13 @@ function organization_svg($atts)
             就労訓練施設 勇心学園
         </text>
         </a>
-<a target="_blank" href="'.$facility_data['takkouen']['homepage'].'">
+<a target="_blank" href="' . $facility_data['takkouen']['homepage'] . '">
         <rect class="cls-25" x="583.43" y="2.17" width="491.38" height="107.81"/>
         <path class="cls-33" d="M1073.18,3.79V108.35H585.06V3.79h488.12m3.25-3.25H581.81V111.6h494.62V.54Z" transform="translate(0 0)"/>
         <rect class="cls-33" x="583.43" y="0.54" width="492.46" height="35.76"/>
         <path class="cls-33" d="M1075.35,1.08V35.76H584V1.08h491.38M1076.43,0H582.89V36.84h493.54V0Z" transform="translate(0 0)"/>
         <text class="cls-27" transform="translate(603.43 26.04)">
-            '.$facility_data['takkouen']['name'].'
+            ' . $facility_data['takkouen']['name'] . '
         </text>
         <text class="cls-34" transform="translate(603.82 65.71)">
             障害者支援施設拓光園
@@ -317,7 +318,7 @@ function organization_svg($atts)
             拓光園日中一時支援事業所 など
         </text>
 </a>
-<a target="_blank" href="'.$facility_data['sangoukan-hirosaki']['homepage'].'">
+<a target="_blank" href="' . $facility_data['sangoukan-hirosaki']['homepage'] . '">
         <rect class="cls-25" x="583.43" y="270.61" width="491.38" height="107.81"/>
         <path class="cls-36" d="M1073.18,272.23V376.79H585.06V272.23h488.12m3.25-3.25H581.81V380.05h494.62V269Z" transform="translate(0 0)"/>
         <rect class="cls-36" x="584.52" y="269.8" width="490.29" height="33.59"/>
@@ -335,12 +336,12 @@ function organization_svg($atts)
             山郷館デイサービスセンター
         </text>
 </a>
-<a target="_blank" href="'.$facility_data['kyokkouen']['homepage'].'">
+<a target="_blank" href="' . $facility_data['kyokkouen']['homepage'] . '">
         <rect class="cls-25" x="583.43" y="404.97" width="491.38" height="107.81"/>
         <path class="cls-37" d="M1073.18,406.59V511.15H585.06V406.59h488.12m3.25-3.25H581.81V514.4h494.62V403.34Z" transform="translate(0 0)"/>
         <rect class="cls-37" x="582.35" y="402.8" width="493.54" height="35.75"/>
         <path class="cls-37" d="M1075.35,403.34V438H582.89V403.34h492.46m1.08-1.08H581.81V439.1h494.62V402.26Z" transform="translate(0 0)"/>
-        <text class="cls-27" transform="translate(603.43 428.84)">'.$facility_data['kyokkouen']['name'].'</text>
+        <text class="cls-27" transform="translate(603.43 428.84)">' . $facility_data['kyokkouen']['name'] . '</text>
         <text class="cls-31" transform="translate(604.31 466.12)">
             障害者支援施設旭光園
         </text>
@@ -348,7 +349,7 @@ function organization_svg($atts)
             旭光園身体障害者短期入所事業所 など
         </text>
         </a>
-<a target="_blank" href="'.$facility_data['sangoukan-kuroishi']['homepage'].'">
+<a target="_blank" href="' . $facility_data['sangoukan-kuroishi']['homepage'] . '">
         <rect class="cls-25" x="583.43" y="673.41" width="491.38" height="107.81"/>
         <path class="cls-38" d="M1073.18,675V779.59H585.06V675h488.12m3.25-3.25H581.81V782.84h494.62V671.78Z" transform="translate(0 0)"/>
         <rect class="cls-38" x="582.35" y="670.97" width="493.54" height="35.76"/>
@@ -366,7 +367,7 @@ function organization_svg($atts)
             山郷館総合支援センター黒石
         </text>
         </a>
-<a target="_blank" href="'.$facility_data['aobamomiji-aoba']['homepage'].'">
+<a target="_blank" href="' . $facility_data['aobamomiji-aoba']['homepage'] . '">
         <rect class="cls-25" x="583.43" y="807.76" width="491.38" height="107.81"/>
         <path class="cls-39" d="M1073.18,809.39V914H585.06V809.39h488.12m3.25-3.25H581.81V917.2h494.62V806.14Z" transform="translate(0 0)"/>
         <rect class="cls-39" x="582.35" y="805.06" width="493.54" height="35.76"/>
@@ -390,47 +391,47 @@ add_shortcode('organization_svg', 'organization_svg');
 
 function facility_overview($atts)
 {
-	require __DIR__.'/facility-data.php';
-	$overview = '<table>';
+    require __DIR__ . '/facility-data.php';
+    $overview = '<table>';
 
-	if ($facility_data) {
-		foreach ($facility_data as $facility) {
-			$overview .= '<tr>';
-			$overview .= '<th>';
-			$overview .= '<a href="'.$facility['homepage'].'" target="_blank">'.$facility['name'].'
+    if ($facility_data) {
+        foreach ($facility_data as $facility) {
+            $overview .= '<tr>';
+            $overview .= '<th>';
+            $overview .= '<a href="' . $facility['homepage'] . '" target="_blank">' . $facility['name'] . '
 </a><br>';
-			$overview .= '<small>'.$facility['subname'].'</small><br>';
-			$overview .= '</th>';
-			$overview .= '<td>';
-			$overview .= '<i class="fas fa-map-marker-alt"></i>'.$facility['address'].'<br>';
-			$overview .= '<a href="'.$facility['maplink'].'" target="_blank" class="arrow" rel="noopener noreferrer">地図</a>';
-			$overview .= '</td>';
-			$overview .= '<td>TEL: '.$facility['tel'].'<br>FAX: '.$facility['fax'].'<br>';
-			$overview .= '</td>';
-			$overview .= '</tr>';
-		}
-	}
-	$overview .= '</table>';
+            $overview .= '<small>' . $facility['subname'] . '</small><br>';
+            $overview .= '</th>';
+            $overview .= '<td>';
+            $overview .= '<i class="fas fa-map-marker-alt"></i>' . $facility['address'] . '<br>';
+            $overview .= '<a href="' . $facility['maplink'] . '" target="_blank" class="arrow" rel="noopener noreferrer">地図</a>';
+            $overview .= '</td>';
+            $overview .= '<td>TEL: ' . $facility['tel'] . '<br>FAX: ' . $facility['fax'] . '<br>';
+            $overview .= '</td>';
+            $overview .= '</tr>';
+        }
+    }
+    $overview .= '</table>';
 
-	return $overview;
+    return $overview;
 }
 add_shortcode('facility_overview', 'facility_overview');
 
 function facility_links($atts)
 {
-	require __DIR__.'/facility-data.php';
-	$links = '<ul class="links">';
+    require __DIR__ . '/facility-data.php';
+    $links = '<ul class="links">';
 
-	if ($facility_data) {
-		foreach ($facility_data as $facility_slug => $facility) {
-			$links .= '<li>';
-			$links .= '<a href="'.$facility['homepage'].'" target="_blank" class="arrow-full color-'.$facility_slug.' bg-light-'.$facility_slug.' before-'.$facility_slug.'">'.$facility['name'].'
+    if ($facility_data) {
+        foreach ($facility_data as $facility_slug => $facility) {
+            $links .= '<li>';
+            $links .= '<a href="' . $facility['homepage'] . '" target="_blank" class="arrow-full color-' . $facility_slug . ' bg-light-' . $facility_slug . ' before-' . $facility_slug . '">' . $facility['name'] . '
 </a>';
-			$links .= '</li>';
-		}
-	}
-	$links .= '</ul>';
+            $links .= '</li>';
+        }
+    }
+    $links .= '</ul>';
 
-	return $links;
+    return $links;
 }
 add_shortcode('facility_links', 'facility_links');
